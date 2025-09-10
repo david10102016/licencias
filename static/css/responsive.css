@@ -1,11 +1,25 @@
 /* Estilos responsivos mejorados */
 @media screen and (max-width: 768px) {
-    /* Ocultar vista de escritorio */
-    .desktop-view {
-        display: none !important;
+    /* Configuración general para tablas responsivas */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        position: relative;
+        display: block;
+        margin: 0 -15px;
+        padding: 0 15px;
     }
-    
-    /* Mostrar vista móvil */
+
+    /* Asegurar que las tablas sean scrolleables */
+    table {
+        width: 100%;
+        min-width: 500px;
+        border-collapse: collapse;
+    }
+
+    /* Estilos específicos para dispositivos móviles */
     .mobile-view {
         display: block !important;
     }
