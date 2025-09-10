@@ -1,4 +1,4 @@
-# Sistema de Gestión de Licencias Escolares 📚
+# Sistema de Gestión de Licencias Escolares 📚✅
 
 Este sistema está diseñado para gestionar de manera eficiente las licencias y permisos del personal docente en instituciones educativas. Proporciona una interfaz moderna y fácil de usar tanto para profesores como para administradores.
 
