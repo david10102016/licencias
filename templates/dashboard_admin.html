@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Panel de Administración{% endblock %}
+
+{% block content %}
+  <h2>Bienvenido, {{ session['user_name'] }}</h2>
+
+  <h3>Profesores Registrados</h3>
+  <div class="table-responsive">
+    <table border="1" cellpadding="8" class="admin-table">
+      <tr>
+        <th>Foto</th>
+        <th>Nombre</th>
+        <th>Carnet</th>
+        <th>Turno</th>
+        <th>Especialidad</th>
+        <th>Acciones</th>
+      </tr>
+      {% for profesor in profesores %}
+      <tr>
+              <td data-label="Foto" style="text-align: center">
+        {% if profesor['foto'] %}
+          <img src="{{ url_for('static', filename='uploads/' + profesor['foto']) }}" alt="Foto de {{ profesor['nombre'] }}" class="profile-pic">
+        {% else %}
+          <img src="{{ url_for('static', filename='uploads/default-user.png') }}" alt="Sin foto" class="profile-pic">
+        {% endif %}
+      </td>
+      <td data-label="Nombre">{{ profesor['nombre'] }}</td>
+      <td data-label="Carnet">{{ profesor['carnet'] }}</td>
+      <td data-label="Turno">{{ profesor['turno'] }}</td>
+      <td data-label="Especialidad">{{ profesor['especialidad'] }}</td>
+      <td data-label="Acciones" class="action-buttons">
+        <a href="{{ url_for('editar_profesor', id=profesor['id']) }}" class="btn btn-primary">
+          <i class="fas fa-edit"></i> Editar
+        </a>
+        <a href="{{ url_for('eliminar_profesor', id=profesor['id']) }}" 
+           class="btn btn-danger"
+           onclick="return confirm('¿Estás seguro de eliminar al profesor?')">
+          <i class="fas fa-trash"></i> Eliminar
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <br>
+  <a href="{{ url_for('register_profesor') }}">➕ Registrar nuevo profesor</a>
+
+  <h3 style="margin-top: 40px;">Solicitudes de Licencia</h3>
+  
+  <!-- Vista de escritorio para licencias -->
+  <div class="desktop-view">
+    <div class="table-responsive">
+      <table border="1" cellpadding="8" class="admin-table">
+        <tr>
+          <th>Profesor</th>
+          <th>Desde</th>
+          <th>Hasta</th>
+          <th>Motivo</th>
+          <th>Estado</th>
+          <th>Comprobante</th>
+          <th>Acciones</th>
+        </tr>
+      {% for licencia in licencias %}
+      <tr>
+        <td data-label="Profesor">{{ licencia['nombre'] }}</td>
+        <td data-label="Desde">{{ licencia['fecha_inicio'] }}</td>
+        <td data-label="Hasta">{{ licencia['fecha_fin'] }}</td>
+        <td data-label="Motivo">{{ licencia['motivo'] }}</td>
+        <td data-label="Estado">
+          <span class="status-badge status-{{ licencia['estado']|lower }}">
+            {{ licencia['estado'] }}
+          </span>
+        </td>
+        <td data-label="Comprobante">
+        {% if licencia['archivo'] %}
+          <a href="{{ url_for('static', filename='comprobantes/' ~ licencia['archivo']) }}" target="_blank">Ver</a>
+        {% else %}
+          No adjunto
+        {% endif %}
+      </td>
+      <td>
+        {% if licencia['estado'] == 'En espera' %}
+          <a href="{{ url_for('aceptar_licencia', id=licencia['id']) }}">Aceptar</a> |
+          <a href="{{ url_for('rechazar_licencia', id=licencia['id']) }}">Rechazar</a>
+        {% else %}
+          -
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

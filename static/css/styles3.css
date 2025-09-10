@@ -1,0 +1,126 @@
+/* Estilos principales centrados */
+.main-centered {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Contenedor de autenticación */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.1), rgba(52, 152, 219, 0.1));
+}
+
+.auth-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+}
+
+.auth-header {
+    background: var(--gradient);
+    color: var(--white);
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.auth-header i {
+    margin-bottom: 1.5rem;
+}
+
+.auth-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.auth-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.auth-body {
+    padding: 3rem;
+}
+
+.auth-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Formularios más grandes */
+.form-control-lg {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: var(--radius);
+}
+
+.form-label {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    display: block;
+    color: var(--text-color);
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+}
+
+/* Secciones centradas */
+.section-title,
+.hero-content,
+.mission-vision-section,
+.values-section,
+.features-section,
+.stats-section,
+.cta-section {
+    text-align: center;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.mission-vision-section,
+.values-grid,
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 4rem auto;
+}
+
+/* Espaciado adicional */
+.section-spacing {
+    margin: 6rem 0;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .auth-card {
+        margin: 1rem;
+    }
+    
+    .auth-header {
+        padding: 2rem 1rem;
+    }
+    
+    .auth-body {
+        padding: 2rem 1rem;
+    }
+    
+    .auth-header h2 {
+        font-size: 2rem;
+    }
+    
+    .form-control-lg {
+        padding: 0.75rem 1rem;
+    }
+}

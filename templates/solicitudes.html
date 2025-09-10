@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Nueva Solicitud{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">
+      <i class="fas fa-plus-circle"></i> Nueva Solicitud de Licencia
+    </div>
+    <div class="card-body">
+      <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="motivo">
+            <i class="fas fa-comment-alt"></i> Motivo de la licencia:
+          </label>
+          <textarea 
+            name="motivo" 
+            class="form-control" 
+            rows="4" 
+            required 
+            placeholder="Describa el motivo de su solicitud..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="fecha_inicio">
+            <i class="fas fa-calendar"></i> Fecha de inicio:
+          </label>
+          <input 
+            type="date" 
+            name="fecha_inicio" 
+            class="form-control" 
+            min="{{ current_date }}" 
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="fecha_fin">
+            <i class="fas fa-calendar-check"></i> Fecha de finalización:
+          </label>
+          <input 
+            type="date" 
+            name="fecha_fin" 
+            class="form-control" 
+            min="{{ current_date }}" 
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="archivo">
+            <i class="fas fa-paperclip"></i> Adjuntar comprobante (opcional):
+          </label>
+          <input 
+            type="file" 
+            name="archivo" 
+            class="form-control" 
+            accept="image/*,application/pdf">
+          <small class="text-muted">Formatos aceptados: imágenes y PDF</small>
+        </div>
+
+        <div class="text-center mt-2">
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i> Enviar solicitud
+          </button>
+          <a href="{{ url_for('dashboard_profesor') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Volver al panel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Sistema de Licencias{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+  <style>
+    /* Estilos responsivos base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* Navegación responsiva */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      .navbar h1 {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+      }
+      
+      nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      nav a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem;
+      }
+    }
+
+    /* Vistas móvil/escritorio */
+    .mobile-view {
+      display: none;
+    }
+
+    .desktop-view {
+      display: block;
+    }
+
+    /* Estilos para tablas en escritorio */
+    .table-responsive {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 1rem 0;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .admin-table th {
+      background: var(--gradient);
+      color: white;
+      padding: 1rem;
+      text-align: left;
+    }
+
+    .admin-table td {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .admin-table tr:hover {
+      background-color: #f8f9fa;
+    }
+
+    /* Estilos para móviles */
+    @media (max-width: 768px) {
+      .desktop-view {
+        display: none;
+      }
+
+      .mobile-view {
+        display: block;
+        padding: 1rem;
+      }
+
+      .mobile-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 1rem;
+        overflow: hidden;
+      }
+
+      .mobile-card-header {
+        background: var(--gradient);
+        color: white;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .mobile-card-header .profile-pic {
+        width: 60px;
+        height: 60px;
+        border: 3px solid white;
+      }
+
+      .mobile-card-header h3 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .mobile-card-body {
+        padding: 1rem;
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .info-row:last-child {
+        border-bottom: none;
+      }
+
+      .info-label {
+        font-weight: bold;
+        color: #666;
+      }
+
+      .mobile-card-actions {
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+
+      .btn {
+        text-align: center;
+        padding: 0.8rem;
+        font-size: 0.9rem;
+      }
+    }
+
+      .admin-table thead {
+        display: none;
+      }
+
+      .admin-table tbody,
+      .admin-table tr,
+      .admin-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .admin-table tr {
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1rem;
+        background: white;
+      }
+
+      .admin-table td {
+        text-align: right;
+        padding: 0.5rem;
+        position: relative;
+        border-bottom: 1px solid #eee;
+      }
+
+      .admin-table td:last-child {
+        border-bottom: none;
+      }
+
+      .admin-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 0.5rem;
+        font-weight: bold;
+        text-align: left;
+      }
+
+      /* Ajustes para la foto del perfil en móvil */
+      .admin-table td:first-child {
+        text-align: center;
+      }
+
+      .profile-pic {
+        margin: 0 auto;
+      }
+
+      /* Ajustes para los botones en móvil */
+      .admin-table td:last-child {
+        text-align: center;
+      }
+
+      .btn {
+        display: inline-block;
+        margin: 0.25rem;
+        width: auto;
+      }
+    }
+
+    /* Cards responsivos */
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .cards-container {
+        grid-template-columns: 1fr;
+        padding: 1rem 0;
+      }
+
+      .card {
+        margin: 0.5rem 0;
+      }
+    }
+
+    /* Formulario responsivo */
+    @media (max-width: 768px) {
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-control {
+        font-size: 16px; /* Previene zoom en iOS */
+      }
+
+      .btn-block {
+        width: 100%;
+      }
+    }
+  </style>
+  <style>
+    .youtube-link {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.3s;
+    }
+
+    .youtube-link:hover {
+      color: #ff0000;
+    }
+
+    .youtube-link img {
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <h1>📚 Sistema de Licencias Escolares</h1>
+      <nav>
+        {% if session.get('user_role') %}
+          {% if session['user_role'] == 'admin' %}
+            <a href="{{ url_for('dashboard_admin') }}"><i class="fas fa-user-shield"></i> Panel Admin</a>
+          {% endif %}
+          <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+        {% else %}
+          <a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  {% if not session.get('user_role') %}
+  <div class="hero">
+    <h2>Bienvenido al Sistema de Licencias Escolares</h2>
+    <p>Una plataforma moderna para la gestión eficiente de licencias y permisos del personal docente.</p>
+    <a href="{{ url_for('login') }}" class="btn btn-primary">Comenzar</a>
+  </div>
+  {% endif %}
+
+  <main class="container main-centered">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+  <p>
+    &copy; 2025 Sistema Escolar  derechos reservados JDavid
+    · 
+    <a class="youtube-link" href="https://www.youtube.com/@jdav777" target="_blank" title="Visitar canal de YouTube">
+      <img src="https://www.svgrepo.com/show/349485/youtube.svg" alt="YouTube" width="20" style="vertical-align: middle;">
+    </a>
+  </p>
+</footer>
+

@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+{% if request.endpoint == 'login' %}
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <i class="fas fa-graduation-cap fa-4x"></i>
+        <h2>Acceso al Sistema</h2>
+        <p class="auth-subtitle">Bienvenido al Sistema de Licencias Escolares</p>
+      </div>
+      <div class="auth-body">
+        <div class="auth-form-container">
+          <form method="POST">
+            <div class="form-group">
+              <label for="carnet" class="form-label">
+                <i class="fas fa-id-card"></i> Usuario/Carnet
+              </label>
+              <input type="text" 
+                     name="carnet" 
+                     class="form-control" 
+                     required 
+                     style="font-size: 1.4rem; padding: 1.5rem;"
+                     placeholder="Ingrese su usuario">
+            </div>
+            <div class="form-group">
+              <label for="contrasena" class="form-label">
+                <i class="fas fa-lock"></i> Contraseña
+              </label>
+              <input type="password" 
+                     name="contrasena" 
+                     class="form-control" 
+                     required 
+                     style="font-size: 1.4rem; padding: 1.5rem;"
+                     placeholder="Ingrese su contraseña">
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="font-size: 1.4rem; padding: 1.5rem;">
+              <i class="fas fa-sign-in-alt"></i> Ingresar al Sistema
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <!-- Página principal con contenido educativo -->
+  <div class="hero-education">
+    <div class="hero-content">
+      <i class="fas fa-graduation-cap fa-4x mb-3"></i>
+      <h1>Colegio Nacional de Excelencia</h1>
+      <p>"Formando líderes para el futuro"</p>
+    </div>
+  </div>
+
+  <!-- Sección de Misión y Visión -->
+  <div class="mission-vision-section">
+    <div class="mission-card">
+      <div class="card-icon">
+        <i class="fas fa-bullseye fa-3x"></i>
+      </div>
+      <h2>Nuestra Misión</h2>
+      <p>Formar estudiantes íntegros con excelencia académica y valores sólidos, preparándolos para los desafíos del futuro a través de una educación innovadora y comprometida.</p>
+    </div>
+    <div class="vision-card">
+      <div class="card-icon">
+        <i class="fas fa-eye fa-3x"></i>
+      </div>
+      <h2>Nuestra Visión</h2>
+      <p>Ser reconocidos como una institución educativa líder en la formación de estudiantes exitosos, comprometidos con la sociedad y preparados para enfrentar los retos globales.</p>
+    </div>
+  </div>
+
+  <!-- Sección de Valores -->
+  <div class="values-section">
+    <h2 class="section-title"><i class="fas fa-heart"></i> Nuestros Valores</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <i class="fas fa-hand-holding-heart fa-2x"></i>
+        <h3>Responsabilidad</h3>
+        <p>Compromiso con la excelencia y el cumplimiento de nuestros deberes.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-users fa-2x"></i>
+        <h3>Respeto</h3>
+        <p>Valoramos la diversidad y fomentamos un ambiente de armonía.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-lightbulb fa-2x"></i>
+        <h3>Innovación</h3>
+        <p>Buscamos constantemente nuevas formas de mejorar la educación.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-star fa-2x"></i>
+        <h3>Excelencia</h3>
+        <p>Compromiso con los más altos estándares educativos.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Características del Sistema -->
+  <div class="features-section">
+    <h2 class="section-title"><i class="fas fa-cog"></i> Sistema de Gestión de Licencias</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-calendar-check fa-3x"></i>
+        <h3>Gestión de Permisos</h3>
+        <ul>
+          <li>Solicitud digital de licencias</li>
+          <li>Seguimiento en tiempo real</li>
+          <li>Notificaciones automáticas</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-file-alt fa-3x"></i>
+        <h3>Documentación Digital</h3>
+        <ul>
+          <li>Carga de comprobantes</li>
+          <li>Historial completo</li>
+          <li>Reportes detallados</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-shield-alt fa-3x"></i>
+        <h3>Seguridad y Privacidad</h3>
+        <ul>
+          <li>Acceso seguro</li>
+          <li>Protección de datos</li>
+          <li>Respaldo automático</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Estadísticas -->
+  <div class="stats-section">
+    <div class="stat-item">
+      <i class="fas fa-chalkboard-teacher fa-3x"></i>
+      <div class="stat-number">100+</div>
+      <div class="stat-label">Docentes Activos</div>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-chart-line fa-3x"></i>
+      <div class="stat-number">98%</div>
+      <div class="stat-label">Satisfacción</div>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-clock fa-3x"></i>
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">Disponibilidad</div>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="cta-section">
+    <i class="fas fa-laptop-code fa-4x mb-3"></i>
+    <h2>Accede al Sistema de Licencias</h2>
+    <p>Gestiona tus permisos de manera eficiente y segura</p>
+    <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+      <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+    </a>
+  </div>
+{% endif %}
+{% endblock %}
+

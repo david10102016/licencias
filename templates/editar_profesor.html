@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Profesor{% endblock %}
+
+{% block content %}
+  <div class="form-container">
+    <h2>Editar Datos del Profesor</h2>
+
+    <form method="POST" enctype="multipart/form-data" class="styled-form">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" value="{{ profesor['nombre'] }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="carnet">Carnet:</label>
+        <input type="text" name="carnet" id="carnet" value="{{ profesor['carnet'] }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="turno">Turno:</label>
+        <select name="turno" id="turno" required>
+          <option value="mañana" {% if profesor['turno'] == 'mañana' %}selected{% endif %}>Mañana</option>
+          <option value="tarde" {% if profesor['turno'] == 'tarde' %}selected{% endif %}>Tarde</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="especialidad">Especialidad:</label>
+        <input type="text" name="especialidad" id="especialidad" value="{{ profesor['especialidad'] }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="foto">Actualizar foto (opcional):</label>
+        <input type="file" name="foto" id="foto" accept="image/*">
+        {% if profesor['foto'] %}
+          <p>Foto actual:</p>
+          <img src="{{ url_for('static', filename='uploads/' ~ profesor['foto']) }}" alt="Foto actual" width="80">
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn-primary">Guardar cambios</button>
+    </form>
+
+    <p><a href="{{ url_for('dashboard_admin') }}">← Volver al Panel de Administración</a></p>
+  </div>
+{% endblock %}
